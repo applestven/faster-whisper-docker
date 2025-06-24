@@ -37,6 +37,13 @@ faster-whisper your-audio.m4a --model-size small --language zh --compute-type in
 ~/.cache/faster-whisper
 
 
+# 构建镜像
+docker build -t whisper-fast .
+
+# 安装到系统
+chmod +x install.sh && ./install.sh
+
+
 
 ## 代码创建
 

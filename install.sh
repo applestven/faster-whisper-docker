@@ -4,20 +4,20 @@ echo "🔧 安装 faster-whisper 命令到 /usr/local/bin/faster-whisper"
 sudo tee /usr/local/bin/faster-whisper > /dev/null << 'EOL'
 #!/bin/bash
 ARGS=()
-for arg in "\$@"; do
-  if [[ -f "\$arg" ]]; then
-    FILE=\$(basename "\$arg")
-    ARGS+=("/data/\$FILE")
+for arg in "$@"; do
+  if [[ -f "$arg" ]]; then
+    FILE=$(basename "$arg")
+    ARGS+=("/data/$FILE")
   else
-    ARGS+=("\$arg")
+    ARGS+=("$arg")
   fi
 done
 
 docker run --rm \
-  -v "\$PWD:/data" \
-  -v "\$HOME/.cache/faster-whisper:/root/.cache" \
+  -v "$PWD:/data" \
+  -v "$HOME/.cache/faster-whisper:/root/.cache" \
   whisper-fast \
-  "\${ARGS[@]}"
+  "${ARGS[@]}"
 EOL
 
 sudo chmod +x /usr/local/bin/faster-whisper
